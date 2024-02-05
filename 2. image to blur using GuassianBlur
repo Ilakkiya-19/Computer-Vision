@@ -1,9 +1,10 @@
 import cv2
-path = "E:/Computer Vision/computer vision input and output/2.blurimage input.png"
-img =cv2.imread(path)
-cv2.imshow("original image",img)
+image = cv2.imread("C:/Users/susri/OneDrive/Desktop/COMPUTER VISION/CV EX 1.jpg")
+k_size = (5, 5)  
+sigma_x = 0    
+blurred_image = cv2.GaussianBlur(image, k_size, sigma_x)
+cv2.imwrite('blurred_image.jpg', blurred_image)
+cv2.imshow('Original Image', image)
+cv2.imshow('Blurred Image', blurred_image)
 cv2.waitKey(0)
-imgGray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
-imgBlur = cv2.GaussianBlur(imgGray,(7,7),0)
-cv2.imshow("Img Blur",imgBlur)
-cv2.waitKey(0)
+cv2.destroyAllWindows()
