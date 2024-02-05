@@ -1,12 +1,15 @@
 import cv2
-img = cv2.imread("E:/Computer Vision/computer vision input and output/19.sobel matrix xy- axis input.png")
-
-cv2.imshow('Original', img)
+import numpy as np
+image = cv2.imread("C:/Users/susri/OneDrive/Desktop/COMPUTER VISION/draw village.jpg", cv2.IMREAD_GRAYSCALE)
+sobel_x = cv2.Sobel(image, cv2.CV_64F, 1, 0, ksize=3)
+abs_sobel_x = np.abs(sobel_x)
+sobel_x = np.uint8(abs_sobel_x)
+sobel_y = cv2.Sobel(image, cv2.CV_64F, 0, 1, ksize=3)
+abs_sobel_y = np.abs(sobel_y)
+sobel_y = np.uint8(abs_sobel_y)
+edge_image = cv2.bitwise_or(sobel_x, sobel_y)
+cv2.imshow('Original Image', image)
+cv2.imshow('Edge-Detected Image', edge_image)
+cv2.imwrite('edge_detected_image.jpg', edge_image)
 cv2.waitKey(0)
-img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-
-img_blur = cv2.GaussianBlur(img_gray, (3,3), 0) 
-sobelxy = cv2.Sobel(src=img_blur, ddepth=cv2.CV_64F, dx=1, dy=1, ksize=5) 
-
-cv2.imshow('Sobel X Y using Sobel() function', sobelxy)
-cv2.waitKey(0)
+cv2.destroyAllWindows()
