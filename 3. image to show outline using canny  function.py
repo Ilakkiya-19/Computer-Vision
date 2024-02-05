@@ -1,10 +1,7 @@
 import cv2
-path = "E:/Computer Vision/computer vision input and output/3.Image to show outline using Canny function input.png"
-img =cv2.imread(path)
-cv2.imshow("original image",img)
+image = cv2.imread("C:/Users/susri/OneDrive/Desktop/COMPUTER VISION/draw village.jpg", cv2.IMREAD_GRAYSCALE)  
+edges = cv2.Canny(image, threshold1=30, threshold2=100)
+cv2.imshow('Original Image', image)
+cv2.imshow('Canny Edges', edges)
 cv2.waitKey(0)
-imgGray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
-imgBlur = cv2.GaussianBlur(imgGray,(7,7),0)
-imgCanny = cv2.Canny(imgBlur,100,200)
-cv2.imshow("Img Canny",imgCanny)
-cv2.waitKey(0)
+cv2.destroyAllWindows()
